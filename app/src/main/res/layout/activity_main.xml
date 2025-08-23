@@ -26,6 +26,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"/>
 
+    <Button
+        android:id="@+id/btnOpenMap"
+        android:text="Abrir Mapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"/>
+
     <TextView
         android:id="@+id/tvStatus"
         android:text="Status: parado"
