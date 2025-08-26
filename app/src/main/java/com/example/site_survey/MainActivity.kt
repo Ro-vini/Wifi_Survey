@@ -116,13 +116,21 @@ class MainActivity : AppCompatActivity() {
                 val lon = latestLon.value
                 val wifi = latestWifi.value
                 if (lat != null && lon != null && wifi.isNotEmpty()) {
-                    measurements += MeasurementPoint(
+                    val point = MeasurementPoint(
                         timestamp = System.currentTimeMillis(),
                         latitude = lat,
                         longitude = lon,
                         wifiList = wifi
                     )
+                    measurements += point
                     binding.tvCount.text = "Medições: ${measurements.size}"
+
+                    // 🔹 Envia broadcast para o MapActivity desenhar em tempo real
+                    val intent = Intent("NEW_MEASUREMENT")
+                    intent.putExtra("lat", lat)
+                    intent.putExtra("lon", lon)
+                    intent.putExtra("rssi", wifi.first().rssi) // exemplo: pega o primeiro AP
+                    sendBroadcast(intent)
                 }
                 delay(2000L)
             }
