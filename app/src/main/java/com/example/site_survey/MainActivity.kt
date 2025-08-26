@@ -19,6 +19,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import android.content.Intent
 
 class MainActivity : AppCompatActivity() {
 
@@ -56,6 +57,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnExport.setOnClickListener {
             val file = DataExporter.exportCsv(this, measurements)
             Toast.makeText(this, "Exportado: ${file.absolutePath}", Toast.LENGTH_LONG).show()
+        }
+        binding.btnOpenMap.setOnClickListener {
+            val intent = Intent(this, MapActivity::class.java)
+            startActivity(intent)
         }
     }
 
